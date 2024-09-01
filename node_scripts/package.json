@@ -1,14 +1,21 @@
 {
   "name": "node_script_for_documentation_scrapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Puppeteer-based scraper",
   "main": "browser.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "puppeteer_js": "./browser.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "puppeteer": "^23.2.1"
+    "puppeteer": "23.2.1"
+  },
+  "scripts": {
+    "build": "pkg . --targets node18-linux-x64 --output puppeteer_js --no-payload"
+  },
+  "pkg": {
+    "scripts": "node_scripts/*.js",
+    "assets": [
+      "node_modules/**/*"
+    ]
   }
 }
