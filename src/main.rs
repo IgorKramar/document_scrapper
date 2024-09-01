@@ -10,7 +10,7 @@ use infrastructure::pdf::lopdf_document::LopdfDocument;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://documentation.greyscript.org";
+    let url = "https://react.dev/learn";
 
     let html_content = FetchHtmlService::fetch_html(url).await?;
 
@@ -26,7 +26,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let document = LopdfDocument::new();
     let mut pdf_service = PdfCreationService::new(document);
 
-    match pdf_service.create_pdf(parsed_content, "output.pdf") {
+    match pdf_service.create_pdf(parsed_content, "./target/documentation.pdf") {
         Ok(_) => println!("PDF успешно сохранен."),
         Err(e) => eprintln!("Ошибка при сохранении PDF: {:?}", e),
     }
