@@ -1,0 +1,45 @@
+{
+  // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+  // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+  // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug executable 'documentation_scrapper'",
+      "cargo": {
+        "args": [
+          "build",
+          "--bin=documentation_scrapper",
+          "--package=documentation_scrapper"
+        ],
+        "filter": {
+          "name": "documentation_scrapper",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests in executable 'documentation_scrapper'",
+      "cargo": {
+        "args": [
+          "test",
+          "--no-run",
+          "--bin=documentation_scrapper",
+          "--package=documentation_scrapper"
+        ],
+        "filter": {
+          "name": "documentation_scrapper",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

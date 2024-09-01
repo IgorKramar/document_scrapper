@@ -1,0 +1,14 @@
+{
+  "name": "node_script_for_documentation_scrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "browser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^23.2.1"
+  }
+}
