@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 (async () => {
     const url = process.argv[2];
     if (!url) {
-        console.error('Usage: node get_html.js <url>');
+        console.error('Usage: node browser.js <url>');
         process.exit(1);
     }
 
