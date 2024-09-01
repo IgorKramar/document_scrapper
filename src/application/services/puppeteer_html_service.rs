@@ -1,5 +1,5 @@
-use crate::infrastructure::cli::puppeteer_runner::PuppeteerRunner;
 use crate::domain::models::html_content::HtmlContent;
+use crate::infrastructure::cli::puppeteer_runner::PuppeteerRunner;
 
 pub struct PuppeteerHtmlService;
 

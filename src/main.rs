@@ -2,7 +2,11 @@ mod application;
 mod domain;
 mod infrastructure;
 
-use application::services::{FetchHtmlService, SpaCheckService, PuppeteerHtmlService};
+use application::services::{
+    FetchHtmlService, ParseHtmlService, PdfCreationService, PuppeteerHtmlService, SpaCheckService,
+};
+
+use infrastructure::pdf::lopdf_document::LopdfDocument;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -10,13 +14,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let html_content = FetchHtmlService::fetch_html(url).await?;
 
-    if SpaCheckService::check(&html_content) {
+    let parsed_content = if SpaCheckService::check(&html_content) {
         println!("Определено как SPA, получение рендеренного HTML...");
-        
+
         let rendered_html = PuppeteerHtmlService::get_rendered_html(url).await?;
-        println!("Рендеренный HTML: {}", rendered_html.content);
+        ParseHtmlService::parse(&rendered_html.content)
     } else {
-        println!("{}", html_content.content);
+        ParseHtmlService::parse(&html_content.content)
+    };
+
+    let document = LopdfDocument::new();
+    let mut pdf_service = PdfCreationService::new(document);
+
+    match pdf_service.create_pdf(parsed_content, "output.pdf") {
+        Ok(_) => println!("PDF успешно сохранен."),
+        Err(e) => eprintln!("Ошибка при сохранении PDF: {:?}", e),
     }
 
     Ok(())

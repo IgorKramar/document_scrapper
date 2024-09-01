@@ -1,2 +1,3 @@
-pub mod web;
 pub mod cli;
+pub mod pdf;
+pub mod web;

@@ -1,5 +1,5 @@
-use crate::infrastructure::web::http_client::HttpClient;
 use crate::domain::models::html_content::HtmlContent;
+use crate::infrastructure::web::http_client::HttpClient;
 
 pub struct FetchHtmlService;
 

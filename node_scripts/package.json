@@ -10,7 +10,7 @@
     "puppeteer": "23.2.1"
   },
   "scripts": {
-    "build": "pkg . --targets node18-linux-x64 --output puppeteer_js --no-payload"
+    "build": "pkg . --targets node18-linux-x64 --output ../bin/puppeteer_js --no-payload"
   },
   "pkg": {
     "scripts": "node_scripts/*.js",

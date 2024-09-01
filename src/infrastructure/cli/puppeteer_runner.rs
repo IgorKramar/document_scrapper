@@ -1,10 +1,10 @@
-use std::str;
 use std::env;
 use std::fs::File;
 use std::io::Write;
-use std::path::PathBuf;
-use tokio::process::Command;
 use std::os::unix::fs::PermissionsExt;
+use std::path::PathBuf;
+use std::str;
+use tokio::process::Command;
 
 pub struct PuppeteerRunner;
 
@@ -20,10 +20,7 @@ impl PuppeteerRunner {
 
     pub async fn run(url: &str) -> Result<String, Box<dyn std::error::Error>> {
         let binary_path = Self::get_embedded_puppeteer_binary()?;
-        let output = Command::new(binary_path)
-            .arg(url)
-            .output()
-            .await?;
+        let output = Command::new(binary_path).arg(url).output().await?;
 
         if output.status.success() {
             let html = str::from_utf8(&output.stdout)?;
